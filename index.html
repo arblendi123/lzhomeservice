@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="de" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LZ Home Service</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            garden_green: '#2D7A4A',
+            garden_dark_green: '#1F5233',
+            garden_light_green: '#4A9B6F',
+            garden_earth: '#8B6F47',
+            garden_dark: '#0F2818',
+            garden_darker: '#051308',
+            garden_gray: '#6B7280',
+            garden_light_gray: '#E8EBE8',
+            garden_accent: '#D4A574',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .font-heading { font-family: 'Playfair Display', Georgia, serif; }
+    .font-body { font-family: 'DM Sans', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #2D7A4A; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .hero-pattern {
+      background-image: radial-gradient(circle at 20% 50%, rgba(45,122,74,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(45,122,74,0.05) 0%, transparent 50%);
+    }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,122,74,0.4); }
+    .toast-msg { animation: slideIn 0.4s ease, fadeOut 0.4s ease 2.6s forwards; }
+    @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; transform: translateY(-10px); } }
+    .code-block { font-family: 'Consolas', 'Monaco', monospace; background: #051308; border-left: 3px solid #2D7A4A; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-garden_dark text-garden_light_gray overflow-auto">
+  <div id="app-wrapper" class="w-full"><!-- Navigation -->
+   <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="#hero" class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-garden_green flex items-center justify-center">
+  <img src="images/lzhomeserviceLogo.jpg" alt="Logo" class="w-full h-full object-cover">
+</div>
+
+<span class="font-heading font-semibold text-lg text-garden_light_gray hidden sm:inline">
+  LZ Home Service
+</span> </a>
+     <div class="hidden md:flex items-center gap-8"><a href="#hero" class="nav-link text-sm font-medium text-garden_gray hover:text-garden_light_gray">Startseite</a> <a href="#leistungen" class="nav-link text-sm font-medium text-garden_gray hover:text-garden_light_gray">Leistungen</a> <a href="#ueber-uns" class="nav-link text-sm font-medium text-garden_gray hover:text-garden_light_gray">Über uns</a> <a href="#kontakt" class="nav-link text-sm font-medium text-garden_gray hover:text-garden_light_gray">Kontakt</a>
+     </div><button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/10"> <i data-lucide="menu" class="w-5 h-5"></i> </button>
+</div><!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden bg-garden_dark/95 backdrop-blur-sm border-t border-gray-700">
+  <div class="px-6 py-4 flex flex-col gap-3">
+    <a href="#hero" class="mobileNavLink py-2 text-sm font-medium text-garden_gray hover:text-garden_green">Startseite</a>
+    <a href="#leistungen" class="mobileNavLink py-2 text-sm font-medium text-garden_gray hover:text-garden_green">Leistungen</a>
+    <a href="#ueber-uns" class="mobileNavLink py-2 text-sm font-medium text-garden_gray hover:text-garden_green">Über uns</a>
+    <a href="#kontakt" class="mobileNavLink py-2 text-sm font-medium text-garden_gray hover:text-garden_green">Kontakt</a>
+  </div>
+</div>
+</nav>
+
+<!-- Hero -->
+<section id="hero" class="hero-pattern pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+    <!-- LEFT -->
+    <div class="fade-up">
+      <div class="inline-flex items-center gap-2 bg-garden_green/15 text-garden_green text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+        Professionell & Zuverlässig
+      </div>
+
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-garden_light_gray mb-6">
+        Ihr zuverlässiger Partner für Haus & Garten
+      </h1>
+
+      <p class="text-garden_gray text-lg md:text-xl leading-relaxed mb-8 max-w-lg">
+        Professionelle Arbeiten rund ums Haus – schnell, sauber und zuverlässig.
+        Von Renovierung bis Gartenpflege bieten wir alles aus einer Hand.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#kontakt" class="bg-garden_green text-white px-6 py-3.5 rounded-xl font-semibold text-sm">
+          Jetzt kontaktieren
+        </a>
+
+        <a href="#kontakt" class="border-2 border-garden_light_gray text-garden_light_gray px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-garden_light_gray hover:text-garden_dark">
+          Kostenloses Angebot
+        </a>
+      </div>
+
+      <p class="text-sm text-garden_gray mt-4">
+        ✔ Schnelle Termine &nbsp; ✔ Faire Preise &nbsp; ✔ Zuverlässiger Service
+      </p>
+
+      <div class="mt-4 text-garden_gray text-sm">
+        📞 +49 160 99545927 &nbsp; | &nbsp; ✉ lumni.zabelaj@web.de
+      </div>
+    </div>
+
+    <!-- RIGHT (LOGO FULL SIZE) -->
+    <div class="fade-up hidden md:block">
+      <div class="relative">
+
+        <div class="w-full aspect-square max-w-md mx-auto rounded-3xl bg-garden_green/10 border border-garden_green/20 overflow-hidden">
+          
+          <!-- LOGO FULL FIT -->
+          <img src="images/lzhomeserviceLogo.jpg" alt="LZ Home Service Logo" 
+               class="w-full h-full object-cover">
+
+        </div>
+
+        <div class="absolute -top-4 -right-4 w-20 h-20 bg-garden_green/10 rounded-full blur-2xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-28 h-28 bg-garden_light_green/10 rounded-full blur-3xl"></div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+   </section><!-- Stats -->
+   <section class="py-12 px-6 border-y border-garden_gray/20 bg-garden_darker">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+     <div class="fade-up">
+      <div class="text-3xl font-heading font-bold text-garden_green">
+       7+
+      </div>
+      <div class="text-sm text-garden_gray mt-1">
+       Leistungen
+      </div>
+     </div>
+     <div class="fade-up">
+      <div class="text-3xl font-heading font-bold text-garden_green">
+       100%
+      </div>
+      <div class="text-sm text-garden_gray mt-1">
+       Kundenzufriedenheit
+      </div>
+     </div>
+     <div class="fade-up">
+      <div class="text-3xl font-heading font-bold text-garden_green">
+       Faire
+      </div>
+      <div class="text-sm text-garden_gray mt-1">
+       Preise garantiert
+      </div>
+     </div>
+     <div class="fade-up">
+      <div class="text-3xl font-heading font-bold text-garden_green">
+       Schnell
+      </div>
+      <div class="text-sm text-garden_gray mt-1">
+       &amp; Zuverlässig
+      </div>
+     </div>
+    </div>
+   </section><!-- Services -->
+   <section id="leistungen" class="py-20 md:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16 fade-up"><span class="text-garden_green text-sm font-semibold uppercase tracking-wider">Was wir bieten</span>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4 text-garden_light_gray">Unsere Leistungen</h2>
+      <p class="text-garden_gray max-w-xl mx-auto">Vom kleinen Handgriff bis zur großen Renovierung – wir bieten Ihnen ein breites Spektrum an Dienstleistungen rund um Haus und Garten.</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="paintbrush" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Ausbesserungen</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Wände, Fassaden und Oberflächen – wir bessern Schäden professionell aus.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="hammer" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Renovierungsarbeiten</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Komplette Renovierungen für Wohnräume und Gebäude nach Ihren Wünschen.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="truck" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Entrümpelung</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Schnelle und ordentliche Entrümpelung von Wohnungen, Kellern und Garagen.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="trees" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Gartenarbeiten</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Rasenpflege, Hecken schneiden, Bepflanzung und komplette Gartenpflege.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="grid-3x3" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Boden verlegen</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Laminat, Vinyl, Fliesen – fachgerechte Verlegung für jeden Bodenbelag.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="sparkles" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Reinigung</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Gründliche Reinigung von Wohnungen, Treppenhäusern und Gewerbeflächen.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="wrench" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Kleine Reparaturen</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Türen, Schlösser, Armaturen – schnelle Hilfe bei kleinen Reparaturen im Alltag.</p>
+      </div>
+     </div>
+    </div>
+<section id="ueber-uns" class="py-20 md:py-28 px-6 bg-garden_darker">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    
+<div class="w-full aspect-[4/3] rounded-3xl bg-gradient-to-br from-garden_green to-garden_dark_green relative overflow-hidden flex items-center">
+
+  <!-- Foto majtas -->
+  <div class="w-1/2 h-full flex items-center justify-center p-4">
+    <img src="images/lzhomeservicezyre.jpg" alt="Foto e Lumni Zabelaj" class="max-w-full max-h-full object-cover rounded-2xl">
+  </div>
+
+  <!-- Teksti djathtas lart -->
+  <div class="w-1/2 h-full flex flex-col justify-start items-end p-6 text-white">
+    <div class="text-right">
+      <div class="font-heading text-2xl font-bold">
+        Lumni Zabelaj
+      </div>
+      <div class="text-white/70 text-sm mt-1">
+        Inhaber &amp; Gründer
+      </div>
+    </div>
+  </div>
+
+  <!-- Elemente dekorative të brendshme (mbi të gjitha) -->
+  <div class="absolute inset-0 opacity-10 z-0">
+    <div class="absolute top-8 left-8 w-32 h-32 border-2 border-white rounded-full"></div>
+    <div class="absolute bottom-12 right-12 w-24 h-24 border-2 border-white rounded-full"></div>
+  </div>
+
+</div>
+    <!-- Teksti rreth jush -->
+    <div class="fade-up">
+      <span class="text-garden_green text-sm font-semibold uppercase tracking-wider">Über uns</span>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-6 text-garden_light_gray">Persönlich. Professionell. Pünktlich.</h2>
+      <p id="aboutText" class="text-garden_gray leading-relaxed mb-6">
+        Mit jahrelanger Erfahrung in Hausmeisterservice und Gartenarbeiten steht Lumni Zabelaj für höchste Qualität und Zuverlässigkeit. Als Inhaber von LZ Home Service liegt ihm die Zufriedenheit seiner Kunden besonders am Herzen.
+      </p>
+      <p class="text-garden_gray leading-relaxed mb-8">
+        Ob kleine Reparatur oder umfangreiche Renovierung – bei uns ist Ihr Zuhause in besten Händen. Wir arbeiten sorgfältig, termingerecht und immer zu fairen Preisen.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex items-center gap-2 text-sm">
+          <i data-lucide="check-circle" class="w-5 h-5 text-garden_green"></i><span class="font-medium text-garden_light_gray">Erfahren &amp; Kompetent</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <i data-lucide="check-circle" class="w-5 h-5 text-garden_green"></i><span class="font-medium text-garden_light_gray">Pünktlich &amp; Zuverlässig</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <i data-lucide="check-circle" class="w-5 h-5 text-garden_green"></i><span class="font-medium text-garden_light_gray">Faire Festpreise</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+    <!--<!-- Gallery Section -->
+<section id="gallery" class="py-24" style="background: #1C352D;">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-4" style="background: rgba(107, 142, 35, 0.3); color: #9ACD32;">Vorher & Nachher</span>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Unsere Projekte</h2>
+      <p class="text-lg text-emerald-200/70 max-w-2xl mx-auto">Überzeugen Sie sich selbst von unserer Arbeit und lassen Sie sich inspirieren.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Project 1 -->
+      <div class="gallery-item group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer">
+        <svg class="absolute inset-0 w-full h-full text-white/10" viewBox="0 0 200 150">
+          <path d="M0,130 Q50,100 100,120 T200,110 L200,150 L0,150 Z" fill="currentColor"/>
+        </svg>
+        <img src="images/fototreppen.jpg" alt="Ausbesserung" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
+          <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Ausbesserung</span>
+            <h3 class="text-xl font-bold text-white mb-2">Ausbesserungen</h3>
+            <p class="text-emerald-200/70 text-sm">Treppen-Ausbesserung bei Esther und Ralf in Regensburg durchgeführt</p>
+          </div>
+        </div>
+
+        <div class="absolute bottom-4 left-4 right-4 z-20">
+          <div class="flex justify-between items-center">
+            <span class="text-white/80 text-sm font-medium"></span>
+            <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="gallery-item group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer">
+        <svg class="absolute inset-0 w-full h-full text-white/10" viewBox="0 0 200 150">
+          <path d="M0,130 Q50,100 100,120 T200,110 L200,150 L0,150 Z" fill="currentColor"/>
+          <circle cx="40" cy="70" r="25" fill="currentColor" opacity="0.4"/>
+          <circle cx="90" cy="60" r="20" fill="currentColor" opacity="0.3"/>
+          <circle cx="140" cy="75" r="30" fill="currentColor" opacity="0.4"/>
+          <path d="M60,90 Q80,50 100,90" stroke="currentColor" stroke-width="3" fill="none" opacity="0.5"/>
+        </svg>
+        <img src="images/entrümpelung.jpg" alt="Entrümpelung" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
+          <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Entrümpelung</span>
+            <h3 class="text-xl font-bold text-white mb-2">Entrümpelung</h3>
+            <p class="text-emerald-200/70 text-sm">Wir entrümpeln und entsorgen ihre Geschäfts- und Haushaltsauflösung </p>
+          </div>
+        </div>
+
+        <div class="absolute bottom-4 left-4 right-4 z-20">
+          <div class="flex justify-between items-center">
+            <span class="text-white/80 text-sm font-medium"></span>
+            <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="gallery-item group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer">
+        <svg class="absolute inset-0 w-full h-full text-white/10" viewBox="0 0 200 150">
+          <rect x="10" y="110" width="25" height="25" fill="currentColor"/>
+          <rect x="37" y="110" width="25" height="25" fill="currentColor" opacity="0.8"/>
+          <rect x="64" y="110" width="25" height="25" fill="currentColor"/>
+          <rect x="91" y="110" width="25" height="25" fill="currentColor" opacity="0.8"/>
+          <rect x="118" y="110" width="25" height="25" fill="currentColor"/>
+          <rect x="145" y="110" width="25" height="25" fill="currentColor" opacity="0.8"/>
+          <rect x="172" y="110" width="25" height="25" fill="currentColor"/>
+          <path d="M20,100 L180,100" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <img src="images/silikatfarbe.jpg" alt="Renovierungsarbeiten" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
+          <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Renovierung</span>
+            <h3 class="text-xl font-bold text-white mb-2">Renovierungsarbeiten</h3>
+            <p class="text-emerald-200/70 text-sm">Abdeckvlies und Schutzfolie Streichen mit Silikatfarbe 1-2 Anstriche</p>
+          </div>    
+        </div>
+
+        <div class="absolute bottom-4 left-4 right-4 z-20">
+          <div class="flex justify-between items-center">
+            <span class="text-white/80 text-sm font-medium"></span>
+            <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="gallery-item group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer">
+        <svg class="absolute inset-0 w-full h-full text-white/10" viewBox="0 0 200 150">
+          <line x1="30" y1="20" x2="30" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="60" y1="20" x2="60" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="90" y1="20" x2="90" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="120" y1="20" x2="120" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="150" y1="20" x2="150" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="180" y1="20" x2="180" y2="130" stroke="currentColor" stroke-width="4"/>
+          <line x1="20" y1="30" x2="190" y2="30" stroke="currentColor" stroke-width="2"/>
+          <line x1="20" y1="70" x2="190" y2="70" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <img src="images/rasenmaeher.dam.jpg" alt="Gartenarbeiten" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
+          <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Gartenarbeiten</span>
+            <h3 class="text-xl font-bold text-white mb-2">Gartenarbeiten</h3>
+            <p class="text-emerald-200/70 text-sm">Rasen mähen & Hecken schneiden</p>
+          </div>
+        </div>
+
+        <div class="absolute bottom-4 left-4 right-4 z-20">
+          <div class="flex justify-between items-center">
+            <span class="text-white/80 text-sm font-medium"></span>
+            <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="gallery-item group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer">
+        <svg class="absolute inset-0 w-full h-full text-white/10" viewBox="0 0 200 150">
+          <ellipse cx="100" cy="120" rx="90" ry="20" fill="currentColor"/>
+          <path d="M100,30 Q80,60 100,80 Q120,60 100,30" fill="currentColor" opacity="0.5"/>
+          <path d="M70,50 Q60,70 70,90 Q90,70 70,50" fill="currentColor" opacity="0.4"/>
+          <path d="M130,45 Q140,65 130,85 Q110,65 130,45" fill="currentColor" opacity="0.4"/>
+        </svg>
+        <img src="images/bodenverlegen.jpg" alt="Bodenverlegen" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
+          <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Bodenverlegen</span>
+            <h3 class="text-xl font-bold text-white mb-2">Bodenverlegen</h3>
+            <p class="text-emerald-200/70 text-sm">Verlegen von Laminat, Vinyl und Teppichboden</p>
+          </div>
+        </div>
+
+        <div class="absolute bottom-4 left-4 right-4 z-20">
+          <div class="flex justify-between items-center">
+            <span class="text-white/80 text-sm font-medium"></span>
+            <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="gallery-item group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer">
+        <svg class="absolute inset-0 w-full h-full text-white/10" viewBox="0 0 200 150">
+          <circle cx="60" cy="100" r="8" fill="currentColor"/>
+          <circle cx="100" cy="90" r="8" fill="currentColor"/>
+          <circle cx="140" cy="105" r="8" fill="currentColor"/>
+          <path d="M60,100 L60,60" stroke="currentColor" stroke-width="2"/>
+          <path d="M100,90 L100,50" stroke="currentColor" stroke-width="2"/>
+          <path d="M140,105 L140,65" stroke="currentColor" stroke-width="2"/>
+          <circle cx="60" cy="55" r="12" fill="currentColor" opacity="0.5"/>
+          <circle cx="100" cy="45" r="15" fill="currentColor" opacity="0.5"/>
+          <circle cx="140" cy="60" r="10" fill="currentColor" opacity="0.5"/>
+        </svg>
+        <img src="images/haushaltsreinigung.jpg" alt="Reinigung" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
+          <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Reinigung</span>
+            <h3 class="text-xl font-bold text-white mb-2">Reinigung</h3>
+            <p class="text-emerald-200/70 text-sm">Haushaltsreinigung für Wohnungen und Häuser</p>
+          </div>
+        </div>
+
+        <div class="absolute bottom-4 left-4 right-4 z-20">
+          <div class="flex justify-between items-center">
+            <span class="text-white/80 text-sm font-medium"></span>
+            <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-24 relative bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+   </section><!-- Contact -->
+   <section id="kontakt" class="py-20 md:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16 fade-up"><span class="text-garden_green text-sm font-semibold uppercase tracking-wider">Kontakt</span>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4 text-garden_light_gray">Wir freuen uns auf Ihre Nachricht</h2>
+      <p class="text-garden_gray max-w-xl mx-auto">Kontaktieren Sie uns für eine unverbindliche Beratung oder ein individuelles Angebot.</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-10"><!-- Contact Info -->
+      <div class="fade-up space-y-6">
+       <div class="bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-garden_green/15 flex items-center justify-center flex-shrink-0">
+         <i data-lucide="phone" class="w-5 h-5 text-garden_green"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1 text-garden_light_gray">Telefon</h4>
+         <p id="contactPhone" class="text-garden_gray text-sm">+49 160 99545927</p>
+        </div>
+       </div>
+       <div class="bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-garden_green/15 flex items-center justify-center flex-shrink-0">
+         <i data-lucide="mail" class="w-5 h-5 text-garden_green"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1 text-garden_light_gray">E-Mail</h4>
+         <p id="contactEmail" class="text-garden_gray text-sm">lumni.zabelaj@web.de</p>
+        </div>
+       </div>
+       <div class="bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-garden_green/15 flex items-center justify-center flex-shrink-0">
+         <i data-lucide="map-pin" class="w-5 h-5 text-garden_green"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1 text-garden_light_gray">Adresse</h4>
+         <p id="contactAddress" class="text-garden_gray text-sm">Am Vogelherd 5, 93142 Maxhütte-Haidhof</p>
+        </div>
+       </div>
+       <div class="bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-garden_green/15 flex items-center justify-center flex-shrink-0">
+         <i data-lucide="globe" class="w-5 h-5 text-garden_green"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold mb-1 text-garden_light_gray">Website</h4>
+         <p class="text-garden_gray text-sm">www.lzhomeservice.de</p>
+        </div>
+       </div>
+      </div><!-- Contact Form -->
+      <div class="fade-up">
+       <form id="contactForm" class="bg-garden_darker rounded-2xl p-8 border border-garden_gray/20 space-y-5">
+        <div><label for="cfName" class="block text-sm font-medium mb-1.5 text-garden_light_gray">Name *</label> <input type="text" id="cfName" required placeholder="Ihr vollständiger Name" class="w-full border border-garden_gray/30 rounded-xl px-4 py-3 text-sm bg-garden_darker text-garden_light_gray focus:outline-none focus:ring-2 focus:ring-garden_green/30 focus:border-garden_green transition">
+        </div>
+        <div><label for="cfEmail" class="block text-sm font-medium mb-1.5 text-garden_light_gray">E-Mail *</label> <input type="email" id="cfEmail" required placeholder="ihre@email.de" class="w-full border border-garden_gray/30 rounded-xl px-4 py-3 text-sm bg-garden_darker text-garden_light_gray focus:outline-none focus:ring-2 focus:ring-garden_green/30 focus:border-garden_green transition">
+        </div>
+        <div><label for="cfPhone" class="block text-sm font-medium mb-1.5 text-garden_light_gray">Telefon</label> <input type="tel" id="cfPhone" placeholder="+49 123 456789" class="w-full border border-garden_gray/30 rounded-xl px-4 py-3 text-sm bg-garden_darker text-garden_light_gray focus:outline-none focus:ring-2 focus:ring-garden_green/30 focus:border-garden_green transition">
+        </div>
+        <div><label for="cfMsg" class="block text-sm font-medium mb-1.5 text-garden_light_gray">Nachricht *</label> <textarea id="cfMsg" required rows="4" placeholder="Beschreiben Sie Ihr Anliegen..." class="w-full border border-garden_gray/30 rounded-xl px-4 py-3 text-sm bg-garden_darker text-garden_light_gray focus:outline-none focus:ring-2 focus:ring-garden_green/30 focus:border-garden_green transition resize-none"></textarea>
+        </div><button type="submit" class="btn-primary w-full bg-garden_green text-white py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2"> <i data-lucide="send" class="w-4 h-4"></i> Nachricht senden </button>
+        <div id="formFeedback" class="hidden text-center text-sm font-medium py-2 rounded-lg"></div>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-garden_darker text-garden_light_gray py-16 px-6 border-t border-garden_gray/20">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+       <div class="flex items-center gap-2 mb-4">
+        <div class="w-9 h-9 rounded-lg bg-garden_green flex items-center justify-center">
+         <span class="text-white font-heading font-bold">LZ</span>
+        </div><span class="font-heading font-semibold">Home Service</span>
+       </div>
+       <p class="text-garden_gray text-sm leading-relaxed">Ihr zuverlässiger Partner für Hausmeisterservice und Gartenarbeiten in Maxhütte-Haidhof und Umgebung.</p>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider text-garden_light_gray">Leistungen</h4>
+       <ul class="space-y-2 text-sm text-garden_gray">
+        <li>Ausbesserungen</li>
+        <li>Renovierungsarbeiten</li>
+        <li>Entrümpelung</li>
+        <li>Gartenarbeiten</li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider text-garden_light_gray">Weitere Leistungen</h4>
+       <ul class="space-y-2 text-sm text-garden_gray">
+        <li>Boden verlegen</li>
+        <li>Reinigung</li>
+        <li>Kleine Reparaturen</li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider text-garden_light_gray">Kontakt</h4>
+       <ul class="space-y-2 text-sm text-garden_gray">
+        <li id="footerPhone" class="flex items-center gap-2"><i data-lucide="phone" class="w-3.5 h-3.5"></i>+49 160 99545927</li>
+        <li id="footerEmail" class="flex items-center gap-2"><i data-lucide="mail" class="w-3.5 h-3.5"></i>lumni.zabelaj@web.de</li>
+        <li id="footerAddress" class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i>Am Vogelherd 5, 93142 Maxhütte-Haidhof</li>
+        <li class="flex items-center gap-2"><i data-lucide="globe" class="w-3.5 h-3.5"></i>www.lzhomeservice.de</li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-garden_gray/20 pt-8 text-center text-garden_gray text-sm">
+      © 2025 LZ Home Service – Lumni Zabelaj. Alle Rechte vorbehalten.
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+  // Mobile menu
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+  document.querySelectorAll('.mobileNavLink').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('hidden'));
+  });
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+      nav.classList.add('bg-garden_darker/95', 'backdrop-blur-sm', 'shadow-sm');
+      nav.classList.remove('bg-transparent');
+    } else {
+      nav.classList.remove('bg-garden_darker/95', 'backdrop-blur-sm', 'shadow-sm');
+      nav.classList.add('bg-transparent');
+    }
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fb = document.getElementById('formFeedback');
+    fb.textContent = '✓ Vielen Dank! Ihre Nachricht wurde gesendet.';
+    fb.className = 'text-center text-sm font-medium py-2 rounded-lg bg-garden_green/15 text-garden_green';
+    e.target.reset();
+    setTimeout(() => fb.className = 'hidden', 3000);
+  });
+
+  lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e2e170007b571c1',t:'MTc3NDYxMTMwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
