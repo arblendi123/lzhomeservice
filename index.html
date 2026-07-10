@@ -53,6 +53,86 @@
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full font-body bg-garden_dark text-garden_light_gray overflow-auto">
+<!-- Cookie Banner -->
+<style>
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+}
+
+#cookie-banner span {
+  margin-right: 15px;
+}
+
+#cookie-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#cookie-banner button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.accept-btn {
+  background: #28a745;
+  color: white;
+}
+
+.accept-btn:hover {
+  background: #218838;
+}
+
+.reject-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #c82333;
+}
+</style>
+
+<div id="cookie-banner">
+  <span>Diese Website verwendet Cookies, um Ihre Nutzererfahrung zu verbessern.</span>
+
+  <div id="cookie-buttons">
+    <button class="accept-btn" onclick="acceptCookies()">Akzeptieren</button>
+    <button class="reject-btn" onclick="rejectCookies()">Ablehnen</button>
+  </div>
+</div>
+
+<script>
+window.onload = function () {
+  if (localStorage.getItem("cookieChoice")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+};
+
+function acceptCookies() {
+  localStorage.setItem("cookieChoice", "accepted");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+
+function rejectCookies() {
+  localStorage.setItem("cookieChoice", "rejected");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+</script>
   <div id="app-wrapper" class="w-full"><!-- Navigation -->
    <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="#hero" class="flex items-center gap-2">
