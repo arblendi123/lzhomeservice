@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="de" class="h-full">
  <head>
+  <link rel="icon" type="image/jpeg" href="/images/lzhomeservicelogo.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="/images/lzhomeservicelogo.jpg">
+<link rel="apple-touch-icon" href="/images/lzhomeservicelogo.jpg">
+
+<meta name="theme-color" content="#ffffff">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LZ Home Service</title>
@@ -33,20 +38,20 @@
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(184, 183, 183, 0.3); }
     .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #2D7A4A; transition: width 0.3s ease; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #aaaaaa; transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
     .hero-pattern {
-      background-image: radial-gradient(circle at 20% 50%, rgba(45,122,74,0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(45,122,74,0.05) 0%, transparent 50%);
+      background-image: radial-gradient(circle at 20% 50%, rgba(213, 203, 210, 0.75) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgb(178, 175, 178) 0%, transparent 50%);
     }
     .btn-primary { transition: all 0.3s ease; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,122,74,0.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(206, 207, 206, 0.4); }
     .toast-msg { animation: slideIn 0.4s ease, fadeOut 0.4s ease 2.6s forwards; }
     @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     @keyframes fadeOut { to { opacity: 0; transform: translateY(-10px); } }
-    .code-block { font-family: 'Consolas', 'Monaco', monospace; background: #051308; border-left: 3px solid #2D7A4A; }
+    .code-block { font-family: 'Consolas', 'Monaco', monospace; background: #b9bab9; border-left: 3px solid #a3a3a3; }
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -60,14 +65,14 @@
   bottom: 20px;
   left: 20px;
   right: 20px;
-  background: #222;
-  color: #fff;
+  background: #715d72;
+  color: #141313;
   padding: 15px 20px;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   z-index: 9999;
 }
 
@@ -89,21 +94,21 @@
 }
 
 .accept-btn {
-  background: #28a745;
-  color: white;
+  background: #454545;
+  color: rgb(246, 246, 246);
 }
 
 .accept-btn:hover {
-  background: #218838;
+  background: #6b6b6b;
 }
 
 .reject-btn {
-  background: #dc3545;
+  background: #b4b1b2;
   color: white;
 }
 
 .reject-btn:hover {
-  background: #c82333;
+  background: #a9a7a7;
 }
 </style>
 
@@ -216,10 +221,10 @@ function rejectCookies() {
   </div>
 </section>
    </section><!-- Stats -->
-   <section class="py-12 px-6 border-y border-garden_gray/20 bg-garden_darker">
+   <section class="py-12 px-6 border-y border-garden_dark/20 bg-garden_gray">
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
      <div class="fade-up">
-      <div class="text-3xl font-heading font-bold text-garden_green">
+      <div class="text-3xl font-heading font-bold text-garden_gray">
        7+
       </div>
       <div class="text-sm text-garden_gray mt-1">
@@ -227,7 +232,7 @@ function rejectCookies() {
       </div>
      </div>
      <div class="fade-up">
-      <div class="text-3xl font-heading font-bold text-garden_green">
+      <div class="text-3xl font-heading font-bold text-garden_gray">
        100%
       </div>
       <div class="text-sm text-garden_gray mt-1">
@@ -235,7 +240,7 @@ function rejectCookies() {
       </div>
      </div>
      <div class="fade-up">
-      <div class="text-3xl font-heading font-bold text-garden_green">
+      <div class="text-3xl font-heading font-bold text-garden_gray">
        Faire
       </div>
       <div class="text-sm text-garden_gray mt-1">
@@ -243,7 +248,7 @@ function rejectCookies() {
       </div>
      </div>
      <div class="fade-up">
-      <div class="text-3xl font-heading font-bold text-garden_green">
+      <div class="text-3xl font-heading font-bold text-garden_gray">
        Schnell
       </div>
       <div class="text-sm text-garden_gray mt-1">
@@ -254,7 +259,7 @@ function rejectCookies() {
    </section><!-- Services -->
    <section id="leistungen" class="py-20 md:py-28 px-6">
     <div class="max-w-6xl mx-auto">
-     <div class="text-center mb-16 fade-up"><span class="text-garden_green text-sm font-semibold uppercase tracking-wider">Was wir bieten</span>
+     <div class="text-center mb-16 fade-up"><span class="text-garden_gray text-sm font-semibold uppercase tracking-wider">Was wir bieten</span>
       <h2 class="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4 text-garden_light_gray">Unsere Leistungen</h2>
       <p class="text-garden_gray max-w-xl mx-auto">Vom kleinen Handgriff bis zur großen Renovierung – wir bieten Ihnen ein breites Spektrum an Dienstleistungen rund um Haus und Garten.</p>
      </div>
@@ -263,26 +268,41 @@ function rejectCookies() {
        <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
         <i data-lucide="paintbrush" class="w-5 h-5 text-garden_green"></i>
        </div>
-       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Renovierungsarbeiten</h3>
-       <p class="text-garden_gray text-sm leading-relaxed">Trockenbau, Spachtelarbeiten und komplette Renovierungen für Wohnräume nach Ihren Wünschen.</p>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Ausbesserungen</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Wände, Fassaden und Oberflächen – wir bessern Schäden professionell aus.</p>
       </div>
       <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
        <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
         <i data-lucide="hammer" class="w-5 h-5 text-garden_green"></i>
        </div>
-       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Boden verlegen</h3>
-       <p class="text-garden_gray text-sm leading-relaxed">Laminat, Vinyl, Designboden – Fachgerechte Verlegung für jeden Bodenbelag als eingetragener HWK-Betrieb.</p>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Renovierungsarbeiten</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Komplette Renovierungen für Wohnräume und Gebäude nach Ihren Wünschen.</p>
       </div>
       <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
        <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
         <i data-lucide="truck" class="w-5 h-5 text-garden_green"></i>
        </div>
-       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Reinigung</h3>
-       <p class="text-garden_gray text-sm leading-relaxed">Professionelle Gebäudereinigung von Wohnungen, Treppenhäusern ,Fenstern und Gewerbeflächen.</p>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Entrümpelung</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Schnelle und ordentliche Entrümpelung von Wohnungen, Kellern und Garagen.</p>
       </div>
       <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
        <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
         <i data-lucide="trees" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Boden verlegen</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Laminat, Vinyl, Fliesen – fachgerechte Verlegung für jeden Bodenbelag.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="sparkles" class="w-5 h-5 text-garden_green"></i>
+       </div>
+       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Reinigung</h3>
+       <p class="text-garden_gray text-sm leading-relaxed">Gründliche Reinigung von Wohnungen, Treppenhäusern und Gewerbeflächen.</p>
+      </div>
+      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
+       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
+        <i data-lucide="wrench" class="w-5 h-5 text-garden_green"></i>
        </div>
        <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Gartenarbeiten</h3>
        <p class="text-garden_gray text-sm leading-relaxed">Rasenpflege, Hecken schneiden, Bepflanzung und komplette Gartenpflege.</p>
@@ -291,26 +311,12 @@ function rejectCookies() {
        <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
         <i data-lucide="grid-3x3" class="w-5 h-5 text-garden_green"></i>
        </div>
-       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Ausbesserungen</h3>
-       <p class="text-garden_gray text-sm leading-relaxed">Wände, Fassaden und Oberflächen – wir bessern Schäden professionell aus.</p>
-      </div>
-      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
-       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
-        <i data-lucide="sparkles" class="w-5 h-5 text-garden_green"></i>
-       </div>
-       <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Entrümpelung</h3>
-       <p class="text-garden_gray text-sm leading-relaxed">Schnelle und ordentliche Entrümpelung von Wohnungen, Kellern und Garagen.</p>
-      </div>
-      <div class="service-card bg-garden_darker rounded-2xl p-6 border border-garden_gray/20 fade-up">
-       <div class="w-12 h-12 rounded-xl bg-garden_green/15 flex items-center justify-center mb-4">
-        <i data-lucide="wrench" class="w-5 h-5 text-garden_green"></i>
-       </div>
        <h3 class="font-semibold text-lg text-garden_light_gray mb-2">Kleine Reparaturen</h3>
        <p class="text-garden_gray text-sm leading-relaxed">Türen, Schlösser, Armaturen – schnelle Hilfe bei kleinen Reparaturen im Alltag.</p>
       </div>
      </div>
     </div>
-<section id="ueber-uns" class="py-20 md:py-28 px-6 bg-garden_darker">
+<section id="ueber-uns" class="py-20 md:py-28 px-6 bg-garden_dark">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
     
 <div class="w-full aspect-[4/3] rounded-3xl bg-gradient-to-br from-garden_green to-garden_dark_green relative overflow-hidden flex items-center">
@@ -411,13 +417,13 @@ function rejectCookies() {
           <circle cx="140" cy="75" r="30" fill="currentColor" opacity="0.4"/>
           <path d="M60,90 Q80,50 100,90" stroke="currentColor" stroke-width="3" fill="none" opacity="0.5"/>
         </svg>
-        <img src="images/entrümpelung.jpg" alt="Entrümpelung" class="absolute inset-0 w-full h-full object-cover z-0">
+        <img src="images/molerlumi6.jpg" alt="Malerarbeiten" class="absolute inset-0 w-full h-full object-cover z-0">
 
         <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
           <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Entrümpelung</span>
-            <h3 class="text-xl font-bold text-white mb-2">Entrümpelung</h3>
-            <p class="text-emerald-200/70 text-sm">Wir entrümpeln und entsorgen ihre Geschäfts- und Haushaltsauflösung </p>
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Malerarbeiten</span>
+            <h3 class="text-xl font-bold text-white mb-2">Malerarbeiten</h3>
+            <p class="text-emerald-200/70 text-sm"> </p>
           </div>
         </div>
 
@@ -445,7 +451,7 @@ function rejectCookies() {
           <rect x="172" y="110" width="25" height="25" fill="currentColor"/>
           <path d="M20,100 L180,100" stroke="currentColor" stroke-width="2"/>
         </svg>
-        <img src="images/silikatfarbe.jpg" alt="Renovierungsarbeiten" class="absolute inset-0 w-full h-full object-cover z-0">
+        <img src="images/silikonLZ.jpg" alt="Renovierungsarbeiten" class="absolute inset-0 w-full h-full object-cover z-0">
 
         <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
           <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
@@ -509,7 +515,7 @@ function rejectCookies() {
           <path d="M70,50 Q60,70 70,90 Q90,70 70,50" fill="currentColor" opacity="0.4"/>
           <path d="M130,45 Q140,65 130,85 Q110,65 130,45" fill="currentColor" opacity="0.4"/>
         </svg>
-        <img src="images/bodenverlegen.jpg" alt="Bodenverlegen" class="absolute inset-0 w-full h-full object-cover z-0">
+        <img src="images/bodenverlegungLZ.jpg" alt="Bodenverlegen" class="absolute inset-0 w-full h-full object-cover z-0">
 
         <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
           <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
@@ -544,12 +550,12 @@ function rejectCookies() {
           <circle cx="100" cy="45" r="15" fill="currentColor" opacity="0.5"/>
           <circle cx="140" cy="60" r="10" fill="currentColor" opacity="0.5"/>
         </svg>
-        <img src="images/haushaltsreinigung.jpg" alt="Reinigung" class="absolute inset-0 w-full h-full object-cover z-0">
+        <img src="images/molerlumi4.jpg" alt="Maler" class="absolute inset-0 w-full h-full object-cover z-0">
 
         <div class="overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" style="background: rgba(28, 53, 45, 0.9);">
           <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Reinigung</span>
-            <h3 class="text-xl font-bold text-white mb-2">Reinigung</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: #6B8E23; color: white;">Maler</span>
+            <h3 class="text-xl font-bold text-white mb-2">Malerarbeiten</h3>
             <p class="text-emerald-200/70 text-sm">Haushaltsreinigung für Wohnungen und Häuser</p>
           </div>
         </div>
