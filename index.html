@@ -65,14 +65,14 @@
   bottom: 20px;
   left: 20px;
   right: 20px;
-  background: #715d72;
-  color: #141313;
+  background: #222;
+  color: #fff;
   padding: 15px 20px;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, sans-serif;
   z-index: 9999;
 }
 
@@ -94,21 +94,13 @@
 }
 
 .accept-btn {
-  background: #454545;
-  color: rgb(246, 246, 246);
-}
-
-.accept-btn:hover {
-  background: #6b6b6b;
-}
-
-.reject-btn {
-  background: #b4b1b2;
+  background: #28a745;
   color: white;
 }
 
-.reject-btn:hover {
-  background: #a9a7a7;
+.reject-btn {
+  background: #dc3545;
+  color: white;
 }
 </style>
 
@@ -122,19 +114,11 @@
 </div>
 
 <script>
-window.onload = function () {
-  if (localStorage.getItem("cookieChoice")) {
-    document.getElementById("cookie-banner").style.display = "none";
-  }
-};
-
 function acceptCookies() {
-  localStorage.setItem("cookieChoice", "accepted");
   document.getElementById("cookie-banner").style.display = "none";
 }
 
 function rejectCookies() {
-  localStorage.setItem("cookieChoice", "rejected");
   document.getElementById("cookie-banner").style.display = "none";
 }
 </script>
